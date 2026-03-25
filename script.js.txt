@@ -1,0 +1,38 @@
+function showSection(id) {
+  document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+// Simple translator (demo)
+function translateText() {
+  let text = document.getElementById("inputText").value;
+  document.getElementById("outputText").value = "Translated: " + text;
+}
+
+// Typing test
+let timer = 60;
+let interval;
+
+function startTest() {
+  timer = 60;
+  document.getElementById("time").innerText = timer;
+
+  interval = setInterval(() => {
+    timer--;
+    document.getElementById("time").innerText = timer;
+
+    if (timer === 0) {
+      clearInterval(interval);
+      calculateResult();
+    }
+  }, 1000);
+}
+
+function calculateResult() {
+  let text = document.getElementById("typingInput").value;
+  let words = text.split(" ").length;
+  let wpm = words;
+
+  document.getElementById("wpm").innerText = wpm;
+  document.getElementById("accuracy").innerText = "90";
+}
